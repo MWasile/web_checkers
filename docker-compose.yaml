@@ -26,6 +26,16 @@ services:
     depends_on:
       - backend_db
 
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 1234:1234
+    volumes:
+      - ./frontend:/app
+    networks:
+      - backend_network
+
 
 
 networks:
