@@ -16,8 +16,8 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
       - backend/env/.env
     restart: on-failure
@@ -29,13 +29,25 @@ services:
   frontend:
     build:
       context: ./frontend
-    ports:
-      - 1234:1234
+    expose:
+      - 1234
     volumes:
       - ./frontend:/app
     networks:
       - backend_network
 
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - frontend
+      - backend_checkers
+    networks:
+      - backend_network
+    volumes:
+      - ./backend:/app/
+      - ./frontend:/app
 
 
 networks:
