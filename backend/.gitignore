@@ -393,4 +393,5 @@ poetry.toml
 pyvenv.cfg
 pip-selfcheck.json
 
+staticfiles
 # End of https://www.toptal.com/developers/gitignore/api/venv,django,python,macos,jetbrains+all
